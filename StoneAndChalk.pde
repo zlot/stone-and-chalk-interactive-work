@@ -1,10 +1,3 @@
-// The Nature of Code
-// <http://www.shiffman.net/teaching/nature>
-// Spring 2010
-// Box2DProcessing example
-
-// Basic example of controlling an object with our own motion (by attaching a MouseJoint)
-// Also demonstrates how to know which object was hit
 
 import shiffman.box2d.*;
 import org.jbox2d.common.*;
@@ -18,14 +11,8 @@ import org.jbox2d.dynamics.contacts.*;
 // A reference to our box2d world
 Box2DProcessing box2d;
 
-// Just a single box this time
-Box box;
-
 // An ArrayList of particles that will fall on the surface
 ArrayList<Particle> particles;
-
-// The Spring that will attach to the box from the mouse
-
 
 // Perlin noise values
 float xoff = 0;
@@ -48,14 +35,9 @@ void setup() {
 
   // Create the empty list
   particles = new ArrayList<Particle>();
-
-  // add one particle
-  float sz = random(4,8);
-  particles.add(new Particle(width/2,-20,sz));
   
   floor = new Boundary(width/2, height-5, width, 10);
 
-  PImage img = loadImage("SnowflakeTestSmall.png");
   snowflakePg = createGraphics(64,64);
   snowflakePg.beginDraw();
   snowflakePg.clear();
@@ -74,12 +56,6 @@ void draw() {
 
   // We must always step through time!
   box2d.step();
-
-  // Make an x,y coordinate out of perlin noise  
-  float x = noise(xoff)*width;
-  float y = noise(yoff)*height;
-  xoff += 0.01;
-  yoff += 0.01;
 
   // Look at all particles
   for (int i = particles.size()-1; i >= 0; i--) {

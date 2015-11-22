@@ -49,12 +49,10 @@ class Particle {
     // We look at each body and get its screen position
     Vec2 pos = box2d.getBodyPixelCoord(body);
     
-    
-    
  
     pushMatrix();
-    translate(pos.x, pos.y);
-    rotate(body.getAngle());
+    //translate(pos.x, pos.y);
+    //rotate(body.getAngle());
     set((int)pos.x, (int)pos.y, snowflakePg);
     //image(img, -img.width/2, -img.height/2);    
     
