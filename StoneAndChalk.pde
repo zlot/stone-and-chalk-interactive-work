@@ -46,8 +46,6 @@ void setup() {
   // Add a listener to listen for collisions!
   box2d.world.setContactListener(new CustomListener());
 
-  // Make the box
-  box = new Box(width/2,height/2);
   // Create the empty list
   particles = new ArrayList<Particle>();
 
@@ -83,11 +81,6 @@ void draw() {
   xoff += 0.01;
   yoff += 0.01;
 
-  // This is tempting but will not work!
-  // box.body.setXForm(box2d.screenToWorld(x,y),0);
-
-  //box.body.setAngularVelocity(0);
-
   // Look at all particles
   for (int i = particles.size()-1; i >= 0; i--) {
     Particle p = particles.get(i);
@@ -99,10 +92,10 @@ void draw() {
     }
   }
 
-  box.display();
   floor.display();
   
   
+ 
   // Just drawing the framerate to see how many particles it can handle
   fill(255);
   text("framerate: " + (int)frameRate,12,16);

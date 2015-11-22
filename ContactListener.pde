@@ -33,15 +33,15 @@ import org.jbox2d.dynamics.contacts.Contact;
 
     // If object 1 is a Box, then object 2 must be a particle
     // Note we are ignoring particle on particle collisions
-    if (o1.getClass() == Box.class) {
-      Particle p = (Particle) o2;
-      p.change();
-    } 
-    // If object 2 is a Box, then object 1 must be a particle
-    else if (o2.getClass() == Box.class) {
-      Particle p = (Particle) o1;
-      p.change();
-    }
+    //if (o1.getClass() == Box.class) {
+    //  Particle p = (Particle) o2;
+    //  p.change();
+    //} 
+    //// If object 2 is a Box, then object 1 must be a particle
+    //else if (o2.getClass() == Box.class) {
+    //  Particle p = (Particle) o1;
+    //  p.change();
+    //}
    
   }
 
