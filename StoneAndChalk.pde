@@ -8,6 +8,14 @@ import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
 import org.jbox2d.dynamics.contacts.*;
 
+import org.openkinect.freenect.*;
+import org.openkinect.processing.*;
+import blobDetection.*; // blobs
+
+import controlP5.*;
+
+ControlP5 cp5;
+
 // A reference to our box2d world
 Box2DProcessing box2d;
 
@@ -22,9 +30,13 @@ Boundary floor;
 
 PGraphics snowflakePg;
 
+VisionCtrl visionCtrl;
+
 void setup() {
   size(1000, 700, P2D);
   smooth();
+
+  cp5 = new ControlP5(this);
 
   // Initialize box2d physics and create the world
   box2d = new Box2DProcessing(this);
@@ -38,7 +50,11 @@ void setup() {
 
   floor = new Boundary(width/2, height-5, width, 10);
 
-  snowflakePg = createGraphics(64,64);
+
+  visionCtrl = new VisionCtrl(this);
+  setupControls();
+
+  snowflakePg = createGraphics(64, 64);
   snowflakePg.beginDraw();
   snowflakePg.clear();
   snowflakePg.image(loadImage("SnowflakeTestSmall.png"),0,0);
@@ -70,7 +86,23 @@ void draw() {
 
   floor.display();
 
+  visionCtrl.update();
+  visionCtrl.drawBlobsAndEdges(true, true);
+  visionCtrl.drawDebug();
+
   // Just drawing the framerate to see how many particles it can handle
   fill(255);
   text("framerate: " + (int)frameRate, 12, 16);
+}
+
+void setupControls() {
+  cp5.addSlider("blobThreshold")
+    .setPosition(100, 50)
+    .setRange(0, 0.3)
+    .setValue(0.1);
+}
+
+// an event from slider blobThreshold
+public void blobThreshold(float theValue) {
+  visionCtrl.blobThreshold = theValue;
 }
