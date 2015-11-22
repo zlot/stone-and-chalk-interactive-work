@@ -49,8 +49,8 @@ void draw() {
   background(0);
 
   if (random(1) < 0.2) {
-   float sz = random(4,8);
-   particles.add(new Particle(width/2,-20,sz));
+    float sz = random(4, 8);
+    particles.add(new Particle(width/2, -20, sz));
   }
 
 
