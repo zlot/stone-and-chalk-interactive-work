@@ -5,11 +5,10 @@ class CustomShape {
   Body body;
 
   CustomShape() {
-    makeBody();
+    makeBodyTest();
   }
 
-  void makeBody() {
-
+  void makeBodyTest() {
     PolygonShape shape = new PolygonShape();
 
     Vec2[] vertices = new Vec2[4];

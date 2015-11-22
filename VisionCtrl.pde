@@ -45,7 +45,7 @@ class VisionCtrl {
 
     blobs.copy(depthImg, 0, 0, depthImg.width, depthImg.height, 0, 0, blobs.width, blobs.height);
 
-    // filter?
+    // filter
     blobs.filter(BLUR, 3);
 
     blobDetection.computeBlobs(blobs.pixels);
@@ -56,42 +56,30 @@ class VisionCtrl {
     image(blobs, 300, 0, blobs.width, blobs.height);
   }
 
-  void drawBlobsAndEdges(boolean drawBlobs, boolean drawEdges)
-  {
+  void drawBlobsAndEdges(boolean drawBlobs, boolean drawEdges) {
     noFill();
     Blob b;
     EdgeVertex eA, eB;
-    for (int n=0; n<blobDetection.getBlobNb(); n++)
-    {
+    for (int n=0; n<blobDetection.getBlobNb(); n++) {
       b=blobDetection.getBlob(n);
-      if (b!=null)
-      {
+      if (b!=null) {
         // Edges
-        if (drawEdges)
-        {
+        if (drawEdges) {
           strokeWeight(2);
           stroke(0, 255, 0);
-          for (int m=0; m<b.getEdgeNb(); m++)
-          {
+          for (int m=0; m<b.getEdgeNb(); m++) {
             eA = b.getEdgeVertexA(m);
             eB = b.getEdgeVertexB(m);
             if (eA !=null && eB !=null)
-              line(
-                eA.x*width, eA.y*height, 
-                eB.x*width, eB.y*height
-                );
+              line(eA.x*width, eA.y*height, eB.x*width, eB.y*height);
           }
         }
 
         // Blobs
-        if (drawBlobs)
-        {
+        if (drawBlobs) {
           strokeWeight(1);
           stroke(255, 0, 0);
-          rect(
-            b.xMin*width, b.yMin*height, 
-            b.w*width, b.h*height
-            );
+          rect(b.xMin*width, b.yMin*height, b.w*width, b.h*height);
         }
       }
     }
