@@ -28,6 +28,8 @@ float yoff = 1000;
 
 Boundary floor;
 
+CustomShape shape;
+
 PGraphics snowflakePg;
 
 VisionCtrl visionCtrl;
@@ -50,6 +52,7 @@ void setup() {
 
   floor = new Boundary(width/2, height-5, width, 10);
 
+  shape = new CustomShape();
 
   visionCtrl = new VisionCtrl(this);
   setupControls();
@@ -85,6 +88,8 @@ void draw() {
   }
 
   floor.display();
+  
+  shape.display();
 
   visionCtrl.update();
   visionCtrl.drawBlobsAndEdges(true, true);
