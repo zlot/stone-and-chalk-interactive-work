@@ -25,7 +25,7 @@ Box box;
 ArrayList<Particle> particles;
 
 // The Spring that will attach to the box from the mouse
-Spring spring;
+
 
 // Perlin noise values
 float xoff = 0;
@@ -48,11 +48,6 @@ void setup() {
 
   // Make the box
   box = new Box(width/2,height/2);
-
-  // Make the spring (it doesn't really get initialized until the mouse is clicked)
-  spring = new Spring();
-  spring.bind(width/2,height/2,box);
-
   // Create the empty list
   particles = new ArrayList<Particle>();
 
@@ -91,12 +86,6 @@ void draw() {
   // This is tempting but will not work!
   // box.body.setXForm(box2d.screenToWorld(x,y),0);
 
-  // Instead update the spring which pulls the mouse along
-  if (mousePressed) {
-    spring.update(mouseX,mouseY);
-  } else {
-    spring.update(x,y);
-  }
   //box.body.setAngularVelocity(0);
 
   // Look at all particles
@@ -113,8 +102,6 @@ void draw() {
   box.display();
   floor.display();
   
-  // Draw the spring
-  // spring.display();
   
   // Just drawing the framerate to see how many particles it can handle
   fill(255);
