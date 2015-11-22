@@ -23,7 +23,7 @@ Boundary floor;
 PGraphics snowflakePg;
 
 void setup() {
-  size(1000,700,P2D);
+  size(1000, 700, P2D);
   smooth();
 
   // Initialize box2d physics and create the world
@@ -35,7 +35,7 @@ void setup() {
 
   // Create the empty list
   particles = new ArrayList<Particle>();
-  
+
   floor = new Boundary(width/2, height-5, width, 10);
 
   snowflakePg = createGraphics(64,64);
@@ -69,11 +69,8 @@ void draw() {
   }
 
   floor.display();
-  
-  
- 
+
   // Just drawing the framerate to see how many particles it can handle
   fill(255);
-  text("framerate: " + (int)frameRate,12,16);
-  
+  text("framerate: " + (int)frameRate, 12, 16);
 }
