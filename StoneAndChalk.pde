@@ -79,8 +79,6 @@ void draw() {
 
   floor.display();
   
-  shape.display();
-
   visionCtrl.update();
   visionCtrl.drawBlobsAndEdges(false, true);
   visionCtrl.drawDebug();
