@@ -45,6 +45,10 @@ void setup() {
 
 void draw() {
   background(9, 21, 45);
+  
+  floor.display();
+  
+  box2d.step();
 
   snowflakeCtrl.updateAndDraw();
   
@@ -52,9 +56,7 @@ void draw() {
     snowflakeCtrl.addSnowflake();
   }
 
-  box2d.step();
 
-  floor.display();
   
   visionCtrl.update();
   visionCtrl.drawBlobsAndEdges(false, true);
