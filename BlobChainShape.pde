@@ -1,6 +1,6 @@
 class BlobChainShape {
   
-  final int STEP = 40;
+  final static int STEP = 10;
   
   ArrayList<Vec2> pixelCoords;
   Body body;
