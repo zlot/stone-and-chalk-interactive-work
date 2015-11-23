@@ -24,8 +24,6 @@ Boundary floor;
 PGraphics[] snowflakes;
 int sSize;
 
-CustomShape shape;
-
 PGraphics snowflakePg;
 
 VisionCtrl visionCtrl;
@@ -71,8 +69,6 @@ void setup() {
   particles = new ArrayList<Particle>();
 
   floor = new Boundary(width/2, height-5, width, 10);
-
-  shape = new CustomShape();
 
   visionCtrl = new VisionCtrl(this);
   setupControls();
