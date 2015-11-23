@@ -33,11 +33,9 @@ void setup() {
 
   cp5 = new ControlP5(this);
 
-  // Initialize box2d physics and create the world
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
-
-  // Add a listener to listen for collisions!
+  // Add a listener to listen for collisions
   box2d.world.setContactListener(new CustomListener());
 
   //Load in snowflake images into array
@@ -51,15 +49,12 @@ void setup() {
     snowflakes[i].endDraw();
   } 
 
-
-  // Create the empty list
   particles = new ArrayList<Particle>();
 
   floor = new Boundary(width/2, height-5, width, 10);
 
   visionCtrl = new VisionCtrl(this);
   setupControls();
-
 }
 
 void draw() {
@@ -70,17 +65,14 @@ void draw() {
     particles.add(new Particle(randomX, -70, 8, chooseSnowflake()));
   }
 
-
-  // We must always step through time!
   box2d.step();
 
-  // Look at all particles
   for (int i = particles.size()-1; i >= 0; i--) {
     Particle p = particles.get(i);
     p.display();
     // Particles that leave the screen, we delete them
-    // (note they have to be deleted from both the box2d world and our list
-    if (p.done()) {
+    // (note they have to be deleted from both the box2d world and our list)
+    if(p.done()) {
       particles.remove(i);
     }
   }
@@ -92,8 +84,10 @@ void draw() {
   visionCtrl.update();
   visionCtrl.drawBlobsAndEdges(false, true);
   visionCtrl.drawDebug();
+  
+  
 
-  // Just drawing the framerate to see how many particles it can handle
+  // Draw framerate
   fill(255);
   text("framerate: " + (int)frameRate, 12, 16);
 }
