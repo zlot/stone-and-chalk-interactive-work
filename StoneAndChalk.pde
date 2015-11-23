@@ -20,10 +20,6 @@ Box2DProcessing box2d;
 // An ArrayList of particles that will fall on the surface
 ArrayList<Particle> particles;
 
-// Perlin noise values
-float xoff = 0;
-float yoff = 1000;
-
 Boundary floor;
 PGraphics[] snowflakes;
 int sSize;
