@@ -27,18 +27,22 @@ class BlobChainShape {
       vertices[i] = box2d.coordPixelsToWorld(pixelCoords.get(i)); //Convert each vertex to Box2d world coords
     }
     
-    // getting assertion errors here with createLoop
-    chain.createChain(vertices, vertices.length);
+    // Was getting assertion errors here with createLoop
+    // TODO: Test to make sure all assertion errors are gone
+    try {
+      chain.createLoop(vertices, vertices.length);  
+      // define body
+      BodyDef bd = new BodyDef();
+      // create body in box2d world
+      body = box2d.world.createBody(bd);
+      // attach fixture to body
+      body.createFixture(chain, 1);
+    } catch(AssertionError ex) {
+      println("Received an assertion error when trying to createChain. Just going to continue ...");
+    }
     
-    // define body
-    BodyDef bd = new BodyDef();
-    //bd.type = BodyType.DYNAMIC;
+    
 
-    // create body in box2d world
-    body = box2d.world.createBody(bd);
-    
-    // attach fixture to body
-    body.createFixture(chain, 1);
   }
   
   
