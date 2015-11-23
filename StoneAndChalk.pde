@@ -37,6 +37,7 @@ void setup() {
   box2d.createWorld();
   // Add a listener to listen for collisions
   box2d.world.setContactListener(new CustomListener());
+  box2d.setGravity(0, -10);
 
   //Load in snowflake images into array
   snowflakes = new PGraphics[5];
