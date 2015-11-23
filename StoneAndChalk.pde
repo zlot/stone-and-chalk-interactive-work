@@ -61,11 +61,8 @@ void draw() {
   //blobCtrl.drawSrcImg();
   blobCtrl.drawBlobsAndEdges(false, true);
 
-  //visionCtrl.update();
   visionCtrl.drawDebug();
   
-  
-
   // Draw framerate
   fill(255);
   text("framerate: " + (int)frameRate, 12, 16);
