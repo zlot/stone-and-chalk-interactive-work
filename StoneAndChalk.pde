@@ -1,3 +1,4 @@
+import blobDetection.*;
 import shiffman.box2d.*;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.joints.*;
@@ -7,19 +8,18 @@ import org.jbox2d.dynamics.*;
 import org.jbox2d.dynamics.contacts.*;
 import org.openkinect.freenect.*;
 import org.openkinect.processing.*;
-import blobDetection.*; // blobs
-
 import controlP5.*;
+
 
 ControlP5 cp5;
 
-// A reference to our box2d world
 Box2DProcessing box2d;
 
-
 Boundary floor;
+
 SnowflakeCtrl snowflakeCtrl;
 VisionCtrl visionCtrl;
+
 
 void setup() {
   size(1000, 700, P2D);
@@ -29,13 +29,12 @@ void setup() {
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
+  box2d.setGravity(0, -10);
   // Add a listener to listen for collisions
   box2d.world.setContactListener(new CustomListener());
-  box2d.setGravity(0, -10);
-
+  
   snowflakeCtrl = new SnowflakeCtrl();
   
-
   floor = new Boundary(width/2, height-5, width, 10);
 
   visionCtrl = new VisionCtrl(this);
