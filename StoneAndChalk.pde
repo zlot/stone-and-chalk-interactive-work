@@ -59,7 +59,6 @@ void draw() {
   blobCtrl.detectBlobs(visionCtrl.srcImg);
   
   //blobCtrl.drawSrcImg();
-  blobCtrl.drawBlobsAndEdges(false, true);
 
   visionCtrl.drawDebug();
   
