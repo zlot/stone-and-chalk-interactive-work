@@ -5,36 +5,52 @@ class VisionCtrl {
   // the kinect's dimensions to be used later on for calculations
   final int kinectWidth = 640;
   final int kinectHeight = 480;
-  // to center and rescale from 640x480 to higher custom resolutions
-  float reScale;
+  final int SMALLER_SRC_WIDTH = kinectWidth/3;
+  final int SMALLER_SRC_HEIGHT = kinectHeight/3;
+  
   
   // min/max thresholding for kinect
   int minDepth = 60;
   int maxDepth = 986;
   PImage depthImg;
-
-  BlobDetection blobDetection;
-  PImage blobs;
-  float blobThreshold = 0.2;
-
+  PImage srcImg;
 
   VisionCtrl(StoneAndChalk main) {
     kinect = new Kinect(main);
-    kinect.initDepth();
-    depthImg = new PImage(kinect.width, kinect.height);
-    // create a smaller blob image for speed and efficiency
-    blobs = createImage(kinectWidth/3, kinectHeight/3, RGB);
-
-    // initialize blob detection object to the blob image dimensions
-    blobDetection = new BlobDetection(blobs.width, blobs.height);
-    //  theBlobDetection.setPosDiscrimination(false);
+    
+    if(kinect.numDevices() > 0) {
+      kinect.initDepth();
+      depthImg = new PImage(kinect.width, kinect.height);  
+      // create a smaller blob image for speed and efficiency
+      // TODO:: should be greyscale?
+      srcImg = createImage(SMALLER_SRC_WIDTH, SMALLER_SRC_HEIGHT, RGB);
+    } else {
+      println("Creating test src img");
+      createTestSrcImg();
+    }
   }
 
-  void update() {
+  void createTestSrcImg() {
+    final int NUM_OF_SRC_BLOBS = 4;
+    PGraphics pg = createGraphics(SMALLER_SRC_WIDTH, SMALLER_SRC_HEIGHT);
+    pg.beginDraw();
+    pg.background(255);
+    pg.noStroke();
+    pg.fill(0);
+    for(int i=0; i<NUM_OF_SRC_BLOBS; i++) {
+      pg.ellipse(random(SMALLER_SRC_WIDTH), random(SMALLER_SRC_HEIGHT), 100, 100);
+    }
+    pg.endDraw();
+    pg.loadPixels();
+    pg.updatePixels();
+    srcImg = pg.get();
+  }
 
-    blobDetection.setThreshold(blobThreshold);
 
+  PImage getImage() {
+    
     int[] rawDepth = kinect.getRawDepth();
+    
     for (int i=0; i<rawDepth.length; i++) {
       if (rawDepth[i] >= minDepth && rawDepth[i] <= maxDepth) {
         depthImg.pixels[i] = color(255);
@@ -44,45 +60,19 @@ class VisionCtrl {
     }
     depthImg.updatePixels();
 
-    blobs.copy(depthImg, 0, 0, depthImg.width, depthImg.height, 0, 0, blobs.width, blobs.height);
+    srcImg.copy(depthImg, 0, 0, depthImg.width, depthImg.height, 0, 0, srcImg.width, srcImg.height);
+    
+    return srcImg;
 
-    // filter
-    blobs.filter(BLUR, 3);
-
-    blobDetection.computeBlobs(blobs.pixels);
   }
-
+  
+  
   void drawDebug() {
-    image(depthImg, 0, 0, depthImg.width/3, depthImg.height/3);
-    image(blobs, 300, 0, blobs.width, blobs.height);
-  }
-
-  void drawBlobsAndEdges(boolean drawBlobs, boolean drawEdges) {
-    noFill();
-    Blob b;
-    EdgeVertex eA, eB;
-    for (int n=0; n<blobDetection.getBlobNb(); n++) {
-      b=blobDetection.getBlob(n);
-      if (b!=null) {
-        // Edges
-        if (drawEdges) {
-          strokeWeight(2);
-          stroke(0, 255, 0);
-          for (int m=0; m<b.getEdgeNb(); m++) {
-            eA = b.getEdgeVertexA(m);
-            eB = b.getEdgeVertexB(m);
-            if (eA !=null && eB !=null)
-              line(eA.x*width, eA.y*height, eB.x*width, eB.y*height);
-          }
-        }
-
-        // Blobs
-        if (drawBlobs) {
-          strokeWeight(1);
-          stroke(255, 0, 0);
-          rect(b.xMin*width, b.yMin*height, b.w*width, b.h*height);
-        }
-      }
+    if(kinect.numDevices() > 0) {
+      image(depthImg, 0, 0, depthImg.width/3, depthImg.height/3);  
     }
+    image(srcImg, 300, 0, srcImg.width, srcImg.height);
   }
+  
+
 }

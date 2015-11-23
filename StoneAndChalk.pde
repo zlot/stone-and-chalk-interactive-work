@@ -17,6 +17,7 @@ Box2DProcessing box2d;
 
 Boundary floor;
 
+BlobCtrl blobCtrl;
 SnowflakeCtrl snowflakeCtrl;
 VisionCtrl visionCtrl;
 
@@ -33,11 +34,12 @@ void setup() {
   // Add a listener to listen for collisions
   box2d.world.setContactListener(new CustomListener());
   
-  snowflakeCtrl = new SnowflakeCtrl();
-  
   floor = new Boundary(width/2, height-5, width, 10);
 
   visionCtrl = new VisionCtrl(this);
+  blobCtrl = new BlobCtrl(visionCtrl.srcImg.width, visionCtrl.srcImg.height);
+  snowflakeCtrl = new SnowflakeCtrl();
+
   setupControls();
 }
 
@@ -54,10 +56,12 @@ void draw() {
     snowflakeCtrl.addSnowflake();
   }
 
-
+  blobCtrl.detectBlobs(visionCtrl.srcImg);
   
-  visionCtrl.update();
-  visionCtrl.drawBlobsAndEdges(false, true);
+  //blobCtrl.drawSrcImg();
+  blobCtrl.drawBlobsAndEdges(false, true);
+
+  //visionCtrl.update();
   visionCtrl.drawDebug();
   
   
@@ -86,7 +90,7 @@ void setupControls() {
 
 // an event from slider blobThreshold
 public void blobThreshold(float theValue) {
-  visionCtrl.blobThreshold = theValue;
+  blobCtrl.blobThreshold = theValue;
 }
 
 public void kinectMinThreshold(float theValue) {
