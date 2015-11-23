@@ -22,7 +22,6 @@ ArrayList<Particle> particles;
 
 Boundary floor;
 PGraphics[] snowflakes;
-int sSize;
 
 PGraphics snowflakePg;
 
@@ -44,23 +43,11 @@ void setup() {
   //Load in snowflake images into array
   snowflakes = new PGraphics[5];
   for(int i = 0; i<snowflakes.length; i++){
-    sSize = int(random(60, 100));
-    snowflakes[i] = createGraphics(sSize, sSize);
+    int size = int(random(60, 100));
+    snowflakes[i] = createGraphics(size, size);
     snowflakes[i].beginDraw();
     snowflakes[i].clear();
-    snowflakes[i].image(loadImage("snowflake"+i+".png"), 0, 0, sSize, sSize);
-    snowflakes[i].endDraw();
-  } 
-
-
-  //Load in snowflake images into array
-  snowflakes = new PGraphics[5];
-  for(int i = 0; i<snowflakes.length; i++){
-    sSize = int(random(60, 100));
-    snowflakes[i] = createGraphics(sSize, sSize);
-    snowflakes[i].beginDraw();
-    snowflakes[i].clear();
-    snowflakes[i].image(loadImage("snowflake"+i+".png"), 0, 0, sSize, sSize);
+    snowflakes[i].image(loadImage("snowflake"+i+".png"), 0, 0, size, size);
     snowflakes[i].endDraw();
   } 
 
