@@ -17,14 +17,9 @@ ControlP5 cp5;
 // A reference to our box2d world
 Box2DProcessing box2d;
 
-// An ArrayList of particles that will fall on the surface
-ArrayList<Particle> particles;
 
 Boundary floor;
-PGraphics[] snowflakes;
-
-PGraphics snowflakePg;
-
+SnowflakeCtrl snowflakeCtrl;
 VisionCtrl visionCtrl;
 
 void setup() {
@@ -39,18 +34,8 @@ void setup() {
   box2d.world.setContactListener(new CustomListener());
   box2d.setGravity(0, -10);
 
-  //Load in snowflake images into array
-  snowflakes = new PGraphics[5];
-  for(int i = 0; i<snowflakes.length; i++){
-    int size = int(random(60, 100));
-    snowflakes[i] = createGraphics(size, size);
-    snowflakes[i].beginDraw();
-    snowflakes[i].clear();
-    snowflakes[i].image(loadImage("snowflake"+i+".png"), 0, 0, size, size);
-    snowflakes[i].endDraw();
-  } 
-
-  particles = new ArrayList<Particle>();
+  snowflakeCtrl = new SnowflakeCtrl();
+  
 
   floor = new Boundary(width/2, height-5, width, 10);
 
@@ -61,22 +46,13 @@ void setup() {
 void draw() {
   background(9, 21, 45);
 
+  snowflakeCtrl.updateAndDraw();
+  
   if (random(1) < 0.2) {
-    float randomX = random(0, width);
-    particles.add(new Particle(randomX, -70, 8, chooseSnowflake()));
+    snowflakeCtrl.addSnowflake();
   }
 
   box2d.step();
-
-  for (int i = particles.size()-1; i >= 0; i--) {
-    Particle p = particles.get(i);
-    p.display();
-    // Particles that leave the screen, we delete them
-    // (note they have to be deleted from both the box2d world and our list)
-    if(p.done()) {
-      particles.remove(i);
-    }
-  }
 
   floor.display();
   
@@ -91,10 +67,6 @@ void draw() {
   text("framerate: " + (int)frameRate, 12, 16);
 }
 
-PGraphics chooseSnowflake(){
-  int r = int(random(0, snowflakes.length));
-  return(snowflakes[r]);
-}
 
 void setupControls() {
   cp5.addSlider("blobThreshold")
