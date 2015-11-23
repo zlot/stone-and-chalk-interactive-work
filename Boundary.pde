@@ -1,8 +1,4 @@
-// The Nature of Code
-// <http://www.shiffman.net/teaching/nature>
-// Spring 2012
-// Box2DProcessing example
-
+// Appropriated from The Nature of Code by Daniel Shiffman
 // A fixed boundary class
 
 class Boundary {

@@ -1,8 +1,4 @@
-// The Nature of Code
-// <http://www.shiffman.net/teaching/nature>
-// Spring 2010
-// Box2DProcessing example
-
+// Appropriated from The Nature of Code by Daniel Shiffman
 // ContactListener to listen for collisions!
 
 import org.jbox2d.callbacks.ContactImpulse;
