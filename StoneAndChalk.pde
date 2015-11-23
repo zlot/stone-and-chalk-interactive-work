@@ -21,6 +21,7 @@ BlobCtrl blobCtrl;
 SnowflakeCtrl snowflakeCtrl;
 VisionCtrl visionCtrl;
 
+ArrayList<BlobChainShape> blobChainShapes;
 
 void setup() {
   size(1000, 700, P2D);
@@ -40,6 +41,8 @@ void setup() {
   blobCtrl = new BlobCtrl(visionCtrl.srcImg.width, visionCtrl.srcImg.height);
   snowflakeCtrl = new SnowflakeCtrl();
 
+  blobChainShapes = new ArrayList<BlobChainShape>();
+
   setupControls();
 }
 
@@ -48,7 +51,6 @@ void draw() {
   
   floor.display();
   
-  box2d.step();
 
   snowflakeCtrl.updateAndDraw();
   
@@ -57,7 +59,22 @@ void draw() {
   }
 
   blobCtrl.detectBlobs(visionCtrl.srcImg);
+
+  for(Blob blob : blobCtrl.blobs) {
+    blobChainShapes.add(new BlobChainShape(blob));
+  }
   
+  for(BlobChainShape blobChainShape : blobChainShapes) {
+    blobChainShape.draw();  
+  }
+  
+  box2d.step();
+
+  for(BlobChainShape blobChainShape : blobChainShapes) {
+   blobChainShape.destroy();
+  }
+  blobChainShapes.clear();
+
   //blobCtrl.drawSrcImg();
 
   visionCtrl.drawDebug();
