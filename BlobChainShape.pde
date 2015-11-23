@@ -43,24 +43,17 @@ class BlobChainShape {
   
   void draw() {
     pushStyle();
-    strokeWeight(1);
-    stroke(0);
+    strokeWeight(4);
+    stroke(0,255,0);
     noFill();
-
-    pushMatrix();
-    beginShape();
-    
-    for(int i=0; i<chain.getChildCount(); i++) {
+    int childCount = chain.getChildCount();
+    for(int i=0; i<childCount; i++) {
       EdgeShape edgeShape = new EdgeShape();
       chain.getChildEdge(edgeShape, i); // note the C side-effect way of assigning edgeShape
-      Vec2 edge = box2d.coordWorldToPixels(edgeShape.m_vertex0);
-      vertex(edge.x, edge.y);
-      ellipse(edge.x, edge.y, 30, 30);  
+      Vec2 v = box2d.coordWorldToPixels(edgeShape.m_vertex0);
+      ellipse(v.x, v.y, 30, 30);  
     }
    
-    endShape();
-    popMatrix();
-
   }
   
   void destroy() {
