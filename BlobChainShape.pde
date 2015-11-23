@@ -27,7 +27,8 @@ class BlobChainShape {
       vertices[i] = box2d.coordPixelsToWorld(pixelCoords.get(i)); //Convert each vertex to Box2d world coords
     }
     
-    chain.createLoop(vertices, vertices.length);
+    // getting assertion errors here with createLoop
+    chain.createChain(vertices, vertices.length);
     
     // define body
     BodyDef bd = new BodyDef();
