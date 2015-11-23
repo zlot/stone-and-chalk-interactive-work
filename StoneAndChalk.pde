@@ -113,7 +113,7 @@ void draw() {
   shape.display();
 
   visionCtrl.update();
-  visionCtrl.drawBlobsAndEdges(true, true);
+  visionCtrl.drawBlobsAndEdges(false, true);
   visionCtrl.drawDebug();
 
   // Just drawing the framerate to see how many particles it can handle
