@@ -3,8 +3,8 @@ class VisionCtrl {
   Kinect kinect;
 
   // the kinect's dimensions to be used later on for calculations
-  int kinectWidth = 640;
-  int kinectHeight = 480;
+  final int kinectWidth = 640;
+  final int kinectHeight = 480;
   // to center and rescale from 640x480 to higher custom resolutions
   float reScale;
   
