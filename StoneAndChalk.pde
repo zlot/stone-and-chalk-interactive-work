@@ -27,6 +27,8 @@ float xoff = 0;
 float yoff = 1000;
 
 Boundary floor;
+PGraphics[] snowflakes;
+int sSize;
 
 CustomShape shape;
 
@@ -47,6 +49,30 @@ void setup() {
   // Add a listener to listen for collisions!
   box2d.world.setContactListener(new CustomListener());
 
+  //Load in snowflake images into array
+  snowflakes = new PGraphics[5];
+  for(int i = 0; i<snowflakes.length; i++){
+    sSize = int(random(60, 100));
+    snowflakes[i] = createGraphics(sSize, sSize);
+    snowflakes[i].beginDraw();
+    snowflakes[i].clear();
+    snowflakes[i].image(loadImage("snowflake"+i+".png"), 0, 0, sSize, sSize);
+    snowflakes[i].endDraw();
+  } 
+
+
+  //Load in snowflake images into array
+  snowflakes = new PGraphics[5];
+  for(int i = 0; i<snowflakes.length; i++){
+    sSize = int(random(60, 100));
+    snowflakes[i] = createGraphics(sSize, sSize);
+    snowflakes[i].beginDraw();
+    snowflakes[i].clear();
+    snowflakes[i].image(loadImage("snowflake"+i+".png"), 0, 0, sSize, sSize);
+    snowflakes[i].endDraw();
+  } 
+
+
   // Create the empty list
   particles = new ArrayList<Particle>();
 
@@ -57,19 +83,14 @@ void setup() {
   visionCtrl = new VisionCtrl(this);
   setupControls();
 
-  snowflakePg = createGraphics(64, 64);
-  snowflakePg.beginDraw();
-  snowflakePg.clear();
-  snowflakePg.image(loadImage("SnowflakeTestSmall.png"),0,0);
-  snowflakePg.endDraw();
 }
 
 void draw() {
-  background(0);
+  background(9, 21, 45);
 
   if (random(1) < 0.2) {
-    float sz = random(4, 8);
-    particles.add(new Particle(width/2, -20, sz));
+    float randomX = random(0, width);
+    particles.add(new Particle(randomX, -70, 8, chooseSnowflake()));
   }
 
 
@@ -98,6 +119,11 @@ void draw() {
   // Just drawing the framerate to see how many particles it can handle
   fill(255);
   text("framerate: " + (int)frameRate, 12, 16);
+}
+
+PGraphics chooseSnowflake(){
+  int r = int(random(0, snowflakes.length));
+  return(snowflakes[r]);
 }
 
 void setupControls() {

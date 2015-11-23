@@ -10,17 +10,23 @@ class Particle {
   // We need to keep track of a Body and a radius
   Body body;
   float r;
-
   color col;
-
-  PImage img;
-  Particle(float x, float y, float r_) {
+  PGraphics snowflakeType;
+  int startTime, startFadeAt, lifeSpan;
+  int opacity;
+  
+  
+  Particle(float x, float y, float r_, PGraphics s) {
     r = r_;
     // This function puts the particle in the Box2d world
     makeBody(x, y, r);
     body.setUserData(this);
     col = color(175);
-    //img = loadImage("SnowflakeTestSmall.png");  // Load the image into the program
+    snowflakeType = s;
+    startTime = millis();
+    startFadeAt = 5000;
+    lifeSpan = 10000;
+    opacity = 255;
   }
 
   // This function removes the particle from the box2d world
@@ -41,27 +47,28 @@ class Particle {
     if (pos.y > height+r*2) {
       killBody();
       return true;
+    }else if(millis()-startTime>=lifeSpan){
+      killBody();
+      return true;
     }
     return false;
   }   
    
   void display() {
+    //Decrease opacity of snowflake after set time
+    if(millis()-startTime>=startFadeAt && opacity>0){
+      opacity--;
+    }
     // We look at each body and get its screen position
-    Vec2 pos = box2d.getBodyPixelCoord(body);
-    
- 
+    Vec2 pos = box2d.getBodyPixelCoord(body); 
+   
     pushMatrix();
-    //translate(pos.x, pos.y);
-    //rotate(body.getAngle());
-    set((int)pos.x, (int)pos.y, snowflakePg);
-    //image(img, -img.width/2, -img.height/2);    
-    
-    //fill(col);
-    //stroke(0);
-    //strokeWeight(1);
-    //ellipse(0, 0, r*2, r*2);
-    // Let's add a line so we can see the rotation
-    //line(0, 0, r, 0);
+      translate(pos.x, pos.y);
+      rotate(body.getAngle());
+      pushStyle();
+      tint(255, opacity);
+      image(snowflakeType, -(snowflakeType.width/2), -(snowflakeType.height/2));
+      popStyle();
     popMatrix();
   }
 
@@ -73,6 +80,9 @@ class Particle {
     bd.position = box2d.coordPixelsToWorld(x, y);
     bd.type = BodyType.DYNAMIC;
     body = box2d.createBody(bd);
+    bd.linearDamping = 0.8;
+    bd.angularDamping = 2;
+
 
     // Make the body's shape a circle
     CircleShape cs = new CircleShape();
@@ -81,13 +91,13 @@ class Particle {
     FixtureDef fd = new FixtureDef();
     fd.shape = cs;
     // Parameters that affect physics
-    fd.density = 1;
+    fd.density = 30;
     fd.friction = 0.01;
     fd.restitution = 0.3;
 
     // Attach fixture to body
     body.createFixture(fd);
 
-    body.setAngularVelocity(random(-10, 10));
+    body.setAngularVelocity(random(-1, 1));
   }
 }
