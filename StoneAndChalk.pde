@@ -104,10 +104,26 @@ void setupControls() {
   cp5.addSlider("blobThreshold")
     .setPosition(100, 50)
     .setRange(0, 0.3)
-    .setValue(0.1);
+    .setValue(0.1f);
+    
+  cp5.addSlider("kinectMinThreshold")
+    .setPosition(100, 150)
+    .setRange(30, 100)
+    .setValue(visionCtrl.minDepth);
+  cp5.addSlider("kinectMaxThreshold")
+    .setPosition(100, 250)
+    .setRange(850, 1100)
+    .setValue(visionCtrl.maxDepth);
 }
 
 // an event from slider blobThreshold
 public void blobThreshold(float theValue) {
   visionCtrl.blobThreshold = theValue;
+}
+
+public void kinectMinThreshold(float theValue) {
+  visionCtrl.minDepth = (int)theValue;
+}
+public void kinectMaxThreshold(float theValue) {
+  visionCtrl.maxDepth = (int)theValue;
 }

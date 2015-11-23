@@ -7,9 +7,10 @@ class VisionCtrl {
   int kinectHeight = 480;
   // to center and rescale from 640x480 to higher custom resolutions
   float reScale;
-  // Which pixels do we care about?
-  int minDepth =  60;
-  int maxDepth = 860;
+  
+  // min/max thresholding for kinect
+  int minDepth = 60;
+  int maxDepth = 986;
   PImage depthImg;
 
   BlobDetection blobDetection;
