@@ -125,9 +125,9 @@ void setupControls() {
     .setNumberOfTickMarks(8)
     .setValue(3);
   cp5.addToggle("drawDebug")
-    .setPosition(100, 170);
+    .setPosition(100, 200);
   cp5.addToggle("drawBlobChainShapes")
-    .setPosition(150, 170);
+    .setPosition(150, 200);
   cp5.addToggle("drawBlobSrcImg")
     .setPosition(100, 230);
   cp5.addToggle("drawFramerate")
@@ -135,15 +135,15 @@ void setupControls() {
 }
 
 // an event from slider blobThreshold
-public void blobThreshold(float theValue) {
-  blobCtrl.blobThreshold = theValue;
+public void blobThreshold(float val) {
+  blobCtrl.blobThreshold = val;
 }
-
-public void kinectMinThreshold(float theValue) {
-  visionCtrl.minDepth = (int)theValue;
+public void kinectMinThreshold(float val) {
+  visionCtrl.minDepth = (int)val;
 }
-public void kinectMaxThreshold(float theValue) {
-  visionCtrl.maxDepth = (int)theValue;
+public void kinectMaxThreshold(float val) {
+  visionCtrl.maxDepth = (int)val;
+}
 public void blurStrength(float val) {
   blobCtrl.blurStrength = (int)val;
 }
