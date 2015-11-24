@@ -17,7 +17,7 @@ class VisionCtrl {
   VisionCtrl(StoneAndChalk main) {
     kinect = new Kinect(main); //<>//
     
-    if(kinect.numDevices() > 0) {
+    if(isKinect()) {
       kinect.initDepth();
       depthImg = new PImage(kinect.width, kinect.height);  
       // create a smaller blob image for speed and efficiency
@@ -27,6 +27,10 @@ class VisionCtrl {
       println("Creating test src img");
       createTestSrcImg();
     }
+  }
+  
+  boolean isKinect() {
+    return kinect.numDevices() > 0;
   }
 
   void createTestSrcImg() {
@@ -67,7 +71,7 @@ class VisionCtrl {
   
   
   void drawDebug() {
-    if(kinect.numDevices() > 0) {
+    if(isKinect()) {
       image(depthImg, 0, 0, depthImg.width/3, depthImg.height/3);  
     }
     image(srcImg, 300, 0, srcImg.width, srcImg.height);
