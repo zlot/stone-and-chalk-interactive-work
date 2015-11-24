@@ -24,6 +24,7 @@ VisionCtrl visionCtrl;
 ArrayList<BlobChainShape> blobChainShapes;
 
 boolean drawDebug = true;
+boolean drawFramerate = true;
 boolean drawBlobChainShapes = false;
 
 void setup() {
@@ -87,10 +88,13 @@ void draw() {
     blobCtrl.drawSrcImg();
     visionCtrl.drawDebug();    
   }
-  
-  // Draw framerate
-  fill(255);
-  text("framerate: " + (int)frameRate, 12, 16);
+  if(drawFramerate) {
+    // Draw framerate
+    fill(255);
+    text("framerate: " + (int)frameRate, 12, 16);
+    if (frameCount % 60==0) println(frameRate);
+  }
+    
 }
 
 
@@ -120,6 +124,8 @@ void setupControls() {
     .setPosition(100, 170);
   cp5.addToggle("drawBlobChainShapes")
     .setPosition(150, 170);
+  cp5.addToggle("drawFramerate")
+    .setPosition(150, 230);
 }
 
 // an event from slider blobThreshold
