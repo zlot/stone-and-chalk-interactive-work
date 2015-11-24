@@ -13,7 +13,7 @@ class BlobCtrl {
     theBlobDetection.setPosDiscrimination(false);
     blobs = new ArrayList<Blob>();
   }
-   
+    
   void detectBlobs(PImage srcImg) {
     theBlobDetection.setThreshold(blobThreshold);
     

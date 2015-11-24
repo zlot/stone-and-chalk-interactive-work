@@ -15,7 +15,7 @@ class VisionCtrl {
   PImage srcImg;
 
   VisionCtrl(StoneAndChalk main) {
-    kinect = new Kinect(main); //<>//
+    kinect = new Kinect(main); 
     
     if(isKinect()) {
       kinect.initDepth();
