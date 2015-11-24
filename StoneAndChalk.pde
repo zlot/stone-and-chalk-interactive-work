@@ -58,7 +58,7 @@ void draw() {
     snowflakeCtrl.addSnowflake();
   }
 
-  blobCtrl.detectBlobs(visionCtrl.srcImg);
+  blobCtrl.detectBlobs(visionCtrl.getImage());
 
   for(Blob blob : blobCtrl.blobs) {
     blobChainShapes.add(new BlobChainShape(blob));

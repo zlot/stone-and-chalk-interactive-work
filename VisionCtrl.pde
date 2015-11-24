@@ -52,21 +52,24 @@ class VisionCtrl {
 
   PImage getImage() {
     
-    int[] rawDepth = kinect.getRawDepth();
-    
-    for (int i=0; i<rawDepth.length; i++) {
-      if (rawDepth[i] >= minDepth && rawDepth[i] <= maxDepth) {
-        depthImg.pixels[i] = color(255);
-      } else {
-        depthImg.pixels[i] = color(0);
+    if(isKinect()) {
+      int[] rawDepth = kinect.getRawDepth();
+      
+      for (int i=0; i<rawDepth.length; i++) {
+        if (rawDepth[i] >= minDepth && rawDepth[i] <= maxDepth) {
+          depthImg.pixels[i] = color(255);
+        } else {
+          depthImg.pixels[i] = color(0);
+        }
       }
+      depthImg.updatePixels();
+  
+      srcImg.copy(depthImg, 0, 0, depthImg.width, depthImg.height, 0, 0, srcImg.width, srcImg.height);
+    } else {
+      // will just return created test src img
     }
-    depthImg.updatePixels();
 
-    srcImg.copy(depthImg, 0, 0, depthImg.width, depthImg.height, 0, 0, srcImg.width, srcImg.height);
-    
     return srcImg;
-
   }
   
   
