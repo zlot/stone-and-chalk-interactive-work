@@ -54,6 +54,7 @@ class VisionCtrl {
     if(isKinect()) {
       int[] rawDepth = kinect.getRawDepth();
       
+      depthImg.loadPixels();
       for (int i=0; i<rawDepth.length; i++) {
         if (rawDepth[i] >= minDepth && rawDepth[i] <= maxDepth) {
           depthImg.pixels[i] = color(255);
