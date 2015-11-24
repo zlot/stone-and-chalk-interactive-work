@@ -38,13 +38,11 @@ class BlobChainShape {
       // attach fixture to body
       body.createFixture(chain, 1);
     } catch(AssertionError ex) {
-      println("Received an assertion error when trying to createChain. Just going to continue ...");
+      //println("Received an assertion error when trying to createChain. Just going to continue ...");
     }
     
-    
-
   }
-  
+ 
   
   void draw() {
     pushStyle();
