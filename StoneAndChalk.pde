@@ -109,8 +109,8 @@ void setupControls() {
     .setValue(visionCtrl.maxDepth);
   cp5.addSlider("snowflakesPerDrawLoop")
     .setPosition(100, 140)
-    .setRange(0, 30)
-    .setValue(14);
+    .setRange(0, 20)
+    .setValue(6);
   cp5.addToggle("drawDebug")
     .setPosition(100, 170);
   cp5.addToggle("drawBlobChainShapes")
