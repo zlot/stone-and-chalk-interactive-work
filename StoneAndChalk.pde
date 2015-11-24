@@ -23,6 +23,9 @@ VisionCtrl visionCtrl;
 
 ArrayList<BlobChainShape> blobChainShapes;
 
+boolean drawDebug = true;
+boolean drawBlobChainShapes = false;
+
 void setup() {
   size(1024, 768, P2D);
   smooth();
@@ -64,8 +67,10 @@ void draw() {
     blobChainShapes.add(new BlobChainShape(blob));
   }
   
-  for(BlobChainShape blobChainShape : blobChainShapes) {
-    blobChainShape.draw();  
+  if(drawBlobChainShapes) {
+    for(BlobChainShape blobChainShape : blobChainShapes) {
+      blobChainShape.draw();  
+    }    
   }
   
   box2d.step();
@@ -75,9 +80,10 @@ void draw() {
   }
   blobChainShapes.clear();
 
-  // DEBUGs
-  //blobCtrl.drawSrcImg();
-  visionCtrl.drawDebug();
+  if(drawDebug) {
+    blobCtrl.drawSrcImg();
+    visionCtrl.drawDebug();    
+  }
   
   // Draw framerate
   fill(255);
@@ -99,6 +105,10 @@ void setupControls() {
     .setPosition(100, 250)
     .setRange(850, 1100)
     .setValue(visionCtrl.maxDepth);
+  cp5.addToggle("drawDebug")
+    .setPosition(100, 170);
+  cp5.addToggle("drawBlobChainShapes")
+    .setPosition(150, 170);
 }
 
 // an event from slider blobThreshold
