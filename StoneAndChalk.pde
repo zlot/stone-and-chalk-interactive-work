@@ -28,8 +28,8 @@ boolean drawBlobChainShapes = false;
 
 void setup() {
   size(1024, 768, P2D);
-  smooth();
-
+  noSmooth();
+  noStroke();
   cp5 = new ControlP5(this);
 
   box2d = new Box2DProcessing(this);
