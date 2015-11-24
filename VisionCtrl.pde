@@ -75,9 +75,9 @@ class VisionCtrl {
   
   void drawDebug() {
     if(isKinect()) {
-      image(depthImg, 0, 0, depthImg.width/3, depthImg.height/3);  
+      image(depthImg, 30, 30, depthImg.width/3, depthImg.height/3);  
     }
-    image(srcImg, 300, 0, srcImg.width, srcImg.height);
+    image(srcImg, 0, 0, width, height);
   }
   
 
