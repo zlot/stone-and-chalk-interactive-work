@@ -34,7 +34,7 @@ class Boundary {
     b = box2d.createBody(bd);
     
     // Attached the shape to the body using a Fixture
-    b.createFixture(sd,1);
+    b.createFixture(sd, 0);
     
     b.setUserData(this);
   }
