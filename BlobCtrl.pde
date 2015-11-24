@@ -20,7 +20,10 @@ class BlobCtrl {
     this.srcImg = srcImg;
     // filter
     // TODO:: could be faster way. see maybe https://forum.processing.org/two/discussion/3294/doing-blob-detection-on-half-an-image
-    srcImg.filter(BLUR, 3);
+    
+    if(visionCtrl.isKinect()) {
+      srcImg.filter(BLUR, 3);  
+    }
 
     theBlobDetection.computeBlobs(srcImg.pixels);
     
