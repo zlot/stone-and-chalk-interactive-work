@@ -19,7 +19,6 @@ class Particle {
     r = r_;
     // This function puts the particle in the Box2d world
     makeBody(x, y, r);
-    body.setUserData(this);
     snowflakeType = s;
     startTime = millis();
     startFadeAt = 5000;
