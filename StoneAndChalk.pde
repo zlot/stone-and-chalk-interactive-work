@@ -69,7 +69,7 @@ void draw() {
 
   for(Blob blob : blobCtrl.blobs) {
     blobChainShapes.add(new BlobChainShape(blob));
-  }
+  }  
   
   if(drawBlobChainShapes) {
     for(BlobChainShape blobChainShape : blobChainShapes) {
@@ -100,13 +100,12 @@ void setupControls() {
     .setPosition(100, 50)
     .setRange(0, 0.3)
     .setValue(0.1f);
-    
   cp5.addSlider("kinectMinThreshold")
-    .setPosition(100, 150)
+    .setPosition(100, 80)
     .setRange(30, 100)
     .setValue(visionCtrl.minDepth);
   cp5.addSlider("kinectMaxThreshold")
-    .setPosition(100, 250)
+    .setPosition(100, 110)
     .setRange(850, 1100)
     .setValue(visionCtrl.maxDepth);
   cp5.addSlider("snowflakesPerDrawLoop")

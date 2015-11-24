@@ -30,7 +30,6 @@ class SnowflakeCtrl {
       Particle p = particles.get(i);
       p.display();
       // Particles that leave the screen, we delete them
-      // (note they have to be deleted from both the box2d world and our list)
       if(p.done()) {
         particles.remove(i);
       }
