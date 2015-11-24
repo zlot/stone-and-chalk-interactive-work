@@ -111,6 +111,11 @@ void setupControls() {
     .setPosition(100, 140)
     .setRange(0, 20)
     .setValue(6);
+  cp5.addSlider("blurStrength")
+    .setPosition(100, 170)
+    .setRange(1, 8)
+    .setNumberOfTickMarks(8)
+    .setValue(3);
   cp5.addToggle("drawDebug")
     .setPosition(100, 170);
   cp5.addToggle("drawBlobChainShapes")
@@ -127,4 +132,6 @@ public void kinectMinThreshold(float theValue) {
 }
 public void kinectMaxThreshold(float theValue) {
   visionCtrl.maxDepth = (int)theValue;
+public void blurStrength(float val) {
+  blobCtrl.blurStrength = (int)val;
 }

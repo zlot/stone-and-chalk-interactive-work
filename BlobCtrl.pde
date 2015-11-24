@@ -4,6 +4,8 @@ class BlobCtrl {
   
   float blobThreshold = 0.10f;
 
+  int blurStrength = 3;
+  
   ArrayList<Blob> blobs;
   PImage srcImg;
   
@@ -18,11 +20,9 @@ class BlobCtrl {
     theBlobDetection.setThreshold(blobThreshold);
     
     this.srcImg = srcImg;
-    // filter
     // TODO:: could be faster way. see maybe https://forum.processing.org/two/discussion/3294/doing-blob-detection-on-half-an-image
-    
     if(visionCtrl.isKinect()) {
-      srcImg.filter(BLUR, 3);  
+      srcImg.filter(BLUR, blurStrength);
     }
 
     theBlobDetection.computeBlobs(srcImg.pixels);
