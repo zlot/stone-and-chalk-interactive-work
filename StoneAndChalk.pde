@@ -26,6 +26,7 @@ ArrayList<BlobChainShape> blobChainShapes;
 boolean drawDebug = true;
 boolean drawFramerate = true;
 boolean drawBlobChainShapes = false;
+boolean drawBlobSrcImg = true;
 
 void setup() {
   size(1024, 768, P2D);
@@ -84,9 +85,12 @@ void draw() {
   }
   blobChainShapes.clear();
 
-  if(drawDebug) {
+  if(drawBlobSrcImg) {
     blobCtrl.drawSrcImg();
-    visionCtrl.drawDebug();    
+  }
+  if(drawDebug) {
+    blobCtrl.drawBlobsAndEdges(false, true);
+    visionCtrl.drawDebug();   
   }
   if(drawFramerate) {
     // Draw framerate
@@ -124,6 +128,8 @@ void setupControls() {
     .setPosition(100, 170);
   cp5.addToggle("drawBlobChainShapes")
     .setPosition(150, 170);
+  cp5.addToggle("drawBlobSrcImg")
+    .setPosition(100, 230);
   cp5.addToggle("drawFramerate")
     .setPosition(150, 230);
 }
