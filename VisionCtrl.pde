@@ -34,14 +34,13 @@ class VisionCtrl {
   }
 
   void createTestSrcImg() {
-    final int NUM_OF_SRC_BLOBS = 9;
-    PGraphics pg = createGraphics(SMALLER_SRC_WIDTH, SMALLER_SRC_HEIGHT);
+    final int NUM_OF_SRC_BLOBS = 12;
+    PGraphics pg = createGraphics(SMALLER_SRC_WIDTH, SMALLER_SRC_HEIGHT, P2D);
     pg.beginDraw();
-    pg.background(255);
     pg.noStroke();
     pg.fill(0);
     for(int i=0; i<NUM_OF_SRC_BLOBS; i++) {
-      pg.ellipse(random(SMALLER_SRC_WIDTH), random(SMALLER_SRC_HEIGHT), 40, 40);
+      pg.ellipse(random(SMALLER_SRC_WIDTH), random(SMALLER_SRC_HEIGHT), 20, 20);
     }
     pg.endDraw();
     pg.loadPixels();
