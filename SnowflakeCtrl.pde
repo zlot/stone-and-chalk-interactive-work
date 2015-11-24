@@ -42,8 +42,8 @@ class SnowflakeCtrl {
     particles.add(new Particle(randomX, -70, 8, chooseSnowflake()));
   }
 
-  PGraphics chooseSnowflake() {
+  PImage chooseSnowflake() {
     int r = int(random(0, snowflakeImgs.length));
-    return(snowflakeImgs[r]);
+    return(snowflakeImgs[r].get());
   }
 }

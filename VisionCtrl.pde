@@ -68,7 +68,7 @@ class VisionCtrl {
       // will just return created test src img
     }
 
-    return srcImg;
+    return srcImg.get();
   }
   
   

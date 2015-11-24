@@ -10,12 +10,12 @@ class Particle {
   // We need to keep track of a Body and a radius
   Body body;
   float r;
-  PGraphics snowflakeType;
+  PImage snowflakeType;
   int startTime, startFadeAt, lifeSpan;
   int opacity;
   
   
-  Particle(float x, float y, float r_, PGraphics s) {
+  Particle(float x, float y, float r_, PImage s) {
     r = r_;
     // This function puts the particle in the Box2d world
     makeBody(x, y, r);
