@@ -10,7 +10,6 @@ class Particle {
   // We need to keep track of a Body and a radius
   Body body;
   float r;
-  color col;
   PGraphics snowflakeType;
   int startTime, startFadeAt, lifeSpan;
   int opacity;
@@ -21,7 +20,6 @@ class Particle {
     // This function puts the particle in the Box2d world
     makeBody(x, y, r);
     body.setUserData(this);
-    col = color(175);
     snowflakeType = s;
     startTime = millis();
     startFadeAt = 5000;
