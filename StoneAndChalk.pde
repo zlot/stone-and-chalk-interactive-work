@@ -54,7 +54,7 @@ void draw() {
 
   snowflakeCtrl.updateAndDraw();
   
-  if (random(1) < 0.2) {
+  if(random(1) < 0.2) {
     snowflakeCtrl.addSnowflake();
   }
 
@@ -75,8 +75,8 @@ void draw() {
   }
   blobChainShapes.clear();
 
+  // DEBUGs
   //blobCtrl.drawSrcImg();
-
   visionCtrl.drawDebug();
   
   // Draw framerate
