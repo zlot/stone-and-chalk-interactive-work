@@ -32,11 +32,6 @@ class Particle {
     box2d.destroyBody(body);
   }
 
-  // Change color when hit
-  void change() {
-    col = color(255, 0, 0);
-  }
-
   // Is the particle ready for deletion?
   boolean done() {
     // Let's find the screen position of the particle
