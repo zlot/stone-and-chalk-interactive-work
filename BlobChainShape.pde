@@ -35,8 +35,15 @@ class BlobChainShape {
       BodyDef bd = new BodyDef();
       // create body in box2d world
       body = box2d.world.createBody(bd);
+      // create fixture
+      FixtureDef fd = new FixtureDef();
+      // attach chain to fixture
+      fd.shape = chain;
+      fd.density = 0;
+      fd.friction = 0.5;
+      fd.restitution = 0.5;
       // attach fixture to body
-      body.createFixture(chain, 1);
+      body.createFixture(fd);
     } catch(AssertionError ex) {
       //println("Received an assertion error when trying to createChain. Just going to continue ...");
     }
