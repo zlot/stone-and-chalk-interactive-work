@@ -49,6 +49,8 @@ void setup() {
   setupControls();
 }
 
+int snowflakesPerDrawLoop;
+
 void draw() {
   background(9, 21, 45);
   
@@ -58,7 +60,9 @@ void draw() {
   snowflakeCtrl.updateAndDraw();
   
   if(random(1) < 0.2) {
-    snowflakeCtrl.addSnowflake();
+    for(int i=0; i<snowflakesPerDrawLoop; i++) {
+      snowflakeCtrl.addSnowflake();  
+    }
   }
 
   blobCtrl.detectBlobs(visionCtrl.getImage());
@@ -105,6 +109,10 @@ void setupControls() {
     .setPosition(100, 250)
     .setRange(850, 1100)
     .setValue(visionCtrl.maxDepth);
+  cp5.addSlider("snowflakesPerDrawLoop")
+    .setPosition(100, 140)
+    .setRange(0, 30)
+    .setValue(14);
   cp5.addToggle("drawDebug")
     .setPosition(100, 170);
   cp5.addToggle("drawBlobChainShapes")
