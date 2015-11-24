@@ -22,7 +22,7 @@ class VisionCtrl {
       depthImg = new PImage(kinect.width, kinect.height);  
       // create a smaller blob image for speed and efficiency
       // TODO:: should be greyscale?
-      srcImg = createImage(SMALLER_SRC_WIDTH, SMALLER_SRC_HEIGHT, RGB);
+      srcImg = createImage(SMALLER_SRC_WIDTH, SMALLER_SRC_HEIGHT, ALPHA);
     } else {
       println("Creating test src img");
       createTestSrcImg();
