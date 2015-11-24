@@ -24,7 +24,7 @@ VisionCtrl visionCtrl;
 ArrayList<BlobChainShape> blobChainShapes;
 
 void setup() {
-  size(1000, 700, P2D);
+  size(1024, 768, P2D);
   smooth();
 
   cp5 = new ControlP5(this);
