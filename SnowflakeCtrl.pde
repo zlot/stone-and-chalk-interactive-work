@@ -14,7 +14,7 @@ class SnowflakeCtrl {
 
     for(int i = 0; i<NUM_OF_SNOWFLAKE_IMGS; i++) {
       int size = int(random(60, 100));
-      snowflakeImgs[i] = createGraphics(size, size);
+      snowflakeImgs[i] = createGraphics(size, size, P2D);
       snowflakeImgs[i].beginDraw();
       snowflakeImgs[i].clear();
       snowflakeImgs[i].image(loadImage("snowflake"+i+".png"), 0, 0, size, size);
