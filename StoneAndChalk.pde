@@ -55,7 +55,6 @@ void draw() {
   background(9, 21, 45);
   
   floor.display();
-  
 
   snowflakeCtrl.updateAndDraw();
   

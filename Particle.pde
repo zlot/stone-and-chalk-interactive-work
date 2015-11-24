@@ -39,7 +39,7 @@ class Particle {
     if (pos.y > height+r*2) {
       killBody();
       return true;
-    }else if(millis()-startTime>=lifeSpan){
+    } else if(millis() - startTime >= lifeSpan){
       killBody();
       return true;
     }
@@ -48,7 +48,7 @@ class Particle {
    
   void display() {
     //Decrease opacity of snowflake after set time
-    if(millis()-startTime>=startFadeAt && opacity>0){
+    if(opacity > 0 && millis() - startTime >= startFadeAt) {
       opacity--;
     }
     // We look at each body and get its screen position
