@@ -13,6 +13,7 @@ import controlP5.*;
 
 ControlP5 cp5;
 ArrayList<Controller> controls;
+boolean isControlsShowing = false;
 
 Box2DProcessing box2d;
 
@@ -171,4 +172,20 @@ public void kinectMaxThreshold(float val) {
 }
 public void blurStrength(float val) {
   blobCtrl.blurStrength = (int)val;
+}
+
+void keyPressed() {
+  if(key == ' ') {
+    if(isControlsShowing) {
+      for(Controller c : controls) {
+        c.hide();
+        isControlsShowing =!isControlsShowing;
+      }
+    } else {
+      for(Controller c : controls) {
+        c.show();
+        isControlsShowing =!isControlsShowing;
+      }
+    }
+  }
 }
