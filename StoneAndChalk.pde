@@ -28,7 +28,7 @@ ArrayList<BlobChainShape> blobChainShapes;
 boolean drawDebug = false;
 boolean drawFramerate = false;
 boolean drawBlobChainShapes = false;
-boolean drawBlobSrcImg = true;
+boolean drawBlobSrcImg = false;
 
 final int INIT_KINECT_MIN_DEPTH = 30;
 final int INIT_KINECT_MAX_DEPTH = 943;
