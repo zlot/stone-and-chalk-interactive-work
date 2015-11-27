@@ -23,8 +23,8 @@ VisionCtrl visionCtrl;
 
 ArrayList<BlobChainShape> blobChainShapes;
 
-boolean drawFramerate = true;
 boolean drawDebug = false;
+boolean drawFramerate = false;
 boolean drawBlobChainShapes = false;
 boolean drawBlobSrcImg = true;
 
