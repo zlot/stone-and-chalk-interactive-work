@@ -7,7 +7,7 @@ class SnowflakeCtrl {
   ArrayList<Particle> particles;
 
   PImage scLogo, westpacLogo;
-  final int WESTPAC_LOGO_SIZE = 120;
+  final int WESTPAC_LOGO_SIZE = 100;
 
   SnowflakeCtrl() {
 
@@ -18,7 +18,7 @@ class SnowflakeCtrl {
     westpacLogo = loadImage("WestpacLogo2.png");
 
     for(int i = 0; i<NUM_OF_SNOWFLAKE_IMGS-2; i++) {
-      int size = int(random(60, 100));
+      int size = int(random(40, 80));
       snowflakeImgs[i] = createGraphics(size, size, P2D);
       snowflakeImgs[i].noSmooth();
       snowflakeImgs[i].beginDraw();
