@@ -29,6 +29,7 @@ boolean drawDebug = false;
 boolean drawFramerate = false;
 boolean drawBlobChainShapes = false;
 boolean drawBlobSrcImg = false;
+boolean drawContours = true;
 
 final int INIT_KINECT_MIN_DEPTH = 30;
 final int INIT_KINECT_MAX_DEPTH = 943;
@@ -97,9 +98,13 @@ void draw() {
     blobCtrl.drawSrcImg();
   }
   if(drawDebug) {
-    blobCtrl.drawBlobsAndEdges(false, true);
     visionCtrl.drawDebug();   
   }
+  
+  if(drawContours) {
+    blobCtrl.drawBlobsAndEdges(false, true);
+  }
+  
   if(drawFramerate) {
     // Draw framerate
     fill(255);
@@ -158,6 +163,10 @@ void setupControls() {
     cp5.addToggle("drawFramerate")
     .setPosition(180, 230)
   );
+  controls.add(
+    cp5.addToggle("drawContours")
+    .setPosition(180, 230)
+  ); 
   
   for(Controller c : controls) {
     c.hide();
