@@ -83,7 +83,7 @@ class Particle {
     FixtureDef fd = new FixtureDef();
     fd.shape = cs;
     // Parameters that affect physics
-    fd.density = 30;
+    fd.density = 20;
     fd.friction = 0.01;
     fd.restitution = 0.3;
 
