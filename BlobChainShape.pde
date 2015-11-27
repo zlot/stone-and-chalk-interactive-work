@@ -40,8 +40,8 @@ class BlobChainShape {
       // attach chain to fixture
       fd.shape = chain;
       fd.density = 0;
-      fd.friction = 0.5;
-      fd.restitution = 0.5;
+      //fd.friction = 0.5;
+      //fd.restitution = 0.5;
       // attach fixture to body
       body.createFixture(fd);
     } catch(AssertionError ex) {
