@@ -9,8 +9,8 @@ class VisionCtrl {
   final int SMALLER_SRC_HEIGHT = kinectHeight/3;
     
   // min/max thresholding for kinect
-  int minDepth = 60;
-  int maxDepth = 986;
+  int minDepth = 0;
+  int maxDepth = 988;
   PImage depthImg;
   PImage srcImg;
 
