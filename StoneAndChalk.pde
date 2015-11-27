@@ -116,28 +116,24 @@ void setupControls() {
     .setPosition(100, 50)
     .setRange(0, 0.3)
     .setValue(0.1f)
-    .hide()
   );
   controls.add(
     cp5.addSlider("kinectMinThreshold")
     .setPosition(100, 80)
     .setRange(30, 100)
     .setValue(INIT_KINECT_MIN_DEPTH)
-    .hide()
   );
   controls.add(
     cp5.addSlider("kinectMaxThreshold")
     .setPosition(100, 110)
     .setRange(850, 1100)
     .setValue(INIT_KINECT_MAX_DEPTH)
-    .hide()
   );
   controls.add(
     cp5.addSlider("snowflakesPerDrawLoop")
     .setPosition(100, 140)
     .setRange(0, 20)
     .setValue(1)
-    .hide()
   );
   controls.add(
     cp5.addSlider("blurStrength")
@@ -145,24 +141,28 @@ void setupControls() {
     .setRange(1, 8)
     .setNumberOfTickMarks(8)
     .setValue(3)
-    .hide()
   );
   controls.add( 
     cp5.addToggle("drawDebug")
-    .setPosition(100, 200).hide()
+    .setPosition(100, 200)
   );
   controls.add(
     cp5.addToggle("drawBlobChainShapes")
-    .setPosition(180, 200).hide()
+    .setPosition(180, 200)
   );
   controls.add(
     cp5.addToggle("drawBlobSrcImg")
-    .setPosition(100, 230).hide()
+    .setPosition(100, 230)
   );
   controls.add(
     cp5.addToggle("drawFramerate")
-    .setPosition(180, 230).hide()
+    .setPosition(180, 230)
   );
+  
+  for(Controller c : controls) {
+    c.hide();
+    isControlsShowing = false;
+  }
 }
 
 // an event from slider blobThreshold
