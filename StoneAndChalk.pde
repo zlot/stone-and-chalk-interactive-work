@@ -60,8 +60,10 @@ void draw() {
   background(9, 21, 45);
   
   floor.display();
-
+  
+  blendMode(ADD);
   snowflakeCtrl.updateAndDraw();
+  blendMode(NORMAL);
   
   if(random(1) < 0.2) {
     for(int i=0; i<snowflakesPerDrawLoop; i++) {
