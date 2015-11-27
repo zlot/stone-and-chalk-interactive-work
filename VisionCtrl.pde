@@ -19,6 +19,7 @@ class VisionCtrl {
     
     if(isKinect()) {
       kinect.initDepth();
+      kinect.enableMirror(true);
       depthImg = new PImage(kinect.width, kinect.height);  
       // create a smaller blob image for speed and efficiency
       // TODO:: should be greyscale?
