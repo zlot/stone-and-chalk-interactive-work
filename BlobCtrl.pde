@@ -11,7 +11,6 @@ class BlobCtrl {
   
   BlobCtrl(int w, int h) {
     theBlobDetection = new BlobDetection(w, h);
-    //theBlobDetection.setConstants(1000, MAX_NUM_OF_TRIANGLES, MAX_NUM_OF_TRIANGLES);
     theBlobDetection.setPosDiscrimination(false);
     blobs = new ArrayList<Blob>();
   }
