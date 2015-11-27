@@ -51,12 +51,14 @@ class BlobCtrl {
         // Edges
         if (drawEdges) {
           strokeWeight(2);
-          stroke(0, 255, 0);
-          for(int m=0;m<b.getEdgeNb();m+=BlobChainShape.STEP) {
+          //fill(255,255,255);
+          stroke(255, 255, 255);
+          //noStroke();
+          for(int m=0;m<b.getEdgeNb();m+=1) {
             eA = b.getEdgeVertexA(m);
             eB = b.getEdgeVertexB(m);
-            ellipse(eA.x*width, eA.y*height, 30, 30);
             if(eA !=null && eB !=null)
+              //ellipse(eA.x*width, eA.y*width, 10, 10);
               line(
                 eA.x*width, eA.y*height, 
                 eB.x*width, eB.y*height
