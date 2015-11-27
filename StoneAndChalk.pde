@@ -119,14 +119,14 @@ void setupControls() {
     cp5.addSlider("kinectMinThreshold")
     .setPosition(100, 80)
     .setRange(30, 100)
-    .setValue(visionCtrl.minDepth)
+    .setValue(30)
     .hide()
   );
   controls.add(
     cp5.addSlider("kinectMaxThreshold")
     .setPosition(100, 110)
     .setRange(850, 1100)
-    .setValue(visionCtrl.maxDepth)
+    .setValue(943)
     .hide()
   );
   controls.add(
