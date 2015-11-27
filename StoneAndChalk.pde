@@ -30,6 +30,9 @@ boolean drawFramerate = false;
 boolean drawBlobChainShapes = false;
 boolean drawBlobSrcImg = true;
 
+final int INIT_KINECT_MIN_DEPTH = 30;
+final int INIT_KINECT_MAX_DEPTH = 943;
+
 void setup() {
   size(1024, 768, P2D);
   noSmooth();
@@ -119,14 +122,14 @@ void setupControls() {
     cp5.addSlider("kinectMinThreshold")
     .setPosition(100, 80)
     .setRange(30, 100)
-    .setValue(30)
+    .setValue(INIT_KINECT_MIN_DEPTH)
     .hide()
   );
   controls.add(
     cp5.addSlider("kinectMaxThreshold")
     .setPosition(100, 110)
     .setRange(850, 1100)
-    .setValue(943)
+    .setValue(INIT_KINECT_MAX_DEPTH)
     .hide()
   );
   controls.add(

@@ -9,13 +9,16 @@ class VisionCtrl {
   final int SMALLER_SRC_HEIGHT = kinectHeight/3;
     
   // min/max thresholding for kinect
-  int minDepth = 0;
-  int maxDepth = 988;
+  int minDepth;
+  int maxDepth;
   PImage depthImg;
   PImage srcImg;
 
   VisionCtrl(StoneAndChalk main) {
     kinect = new Kinect(main); 
+    
+    minDepth = INIT_KINECT_MIN_DEPTH;
+    maxDepth = INIT_KINECT_MAX_DEPTH;
     
     if(isKinect()) {
       kinect.initDepth();
